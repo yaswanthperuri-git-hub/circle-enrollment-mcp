@@ -23,7 +23,10 @@ CIRCLE_BASE_URL = "https://app.circle.so/api/admin/v2"
 
 # EDIT THIS: your dedicated enrollment spaces (name -> Circle space_id)
 SPACES = {
-    "CC16 - IND": 1121452,
+    "BC16A": 1133995,
+    "BC17": 1121445,
+    "BC18": 1133998,
+    "BC19": 1134000,
 }
 
 LOOKBACK_HOURS = 24
@@ -77,12 +80,11 @@ def get_new_members_count(client, space_id, hours=LOOKBACK_HOURS):
 
 
 def build_summary():
-    lines = [f"*Enrollment Update — {datetime.date.today().isoformat()}*"]
+    lines = ["*Total current enrolments in the below batches:*"]
     with httpx.Client(timeout=30) as client:
         for name, space_id in SPACES.items():
             total = get_total_members(client, space_id)
-            new = get_new_members_count(client, space_id)
-            lines.append(f"• {name}: {total} total (+{new} in last {LOOKBACK_HOURS}h)")
+            lines.append(f"• {name}: {total}")
     return "\n".join(lines)
 
 
