@@ -49,7 +49,10 @@ def get_access_group_member_count(client, access_group_id):
 
 
 def build_summary():
-    lines = ["*Total current enrolments in the below batches:*"]
+    lines = [
+        "<@U02FRTNJHSQ> <@U0638PQH6DP>",
+        "*Total current enrolments in the below batches:*",
+    ]
     with httpx.Client(timeout=30) as client:
         for name, access_group_id in SPACES.items():
             total = get_access_group_member_count(client, access_group_id)
