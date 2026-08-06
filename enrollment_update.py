@@ -39,10 +39,10 @@ def _headers():
     }
 
 
-def fetch_members_page(client, space_id, page=1, per_page=100):
+def fetch_space_members_page(client, space_id, page=1, per_page=100):
     resp = client.get(
-        f"{CIRCLE_BASE_URL}/community_members",
-        params={"space_id": space_id, "page": page, "per_page": per_page},
+        f"{CIRCLE_BASE_URL}/spaces/{space_id}/space_members",
+        params={"page": page, "per_page": per_page},
         headers=_headers(),
     )
     resp.raise_for_status()
@@ -50,7 +50,7 @@ def fetch_members_page(client, space_id, page=1, per_page=100):
 
 
 def get_total_members(client, space_id):
-    data = fetch_members_page(client, space_id, page=1, per_page=1)
+    data = fetch_space_members_page(client, space_id, page=1, per_page=1)
     return data.get("count", 0)
 
 
@@ -59,7 +59,7 @@ def get_new_members_count(client, space_id, hours=LOOKBACK_HOURS):
     new_count = 0
     page = 1
     while True:
-        data = fetch_members_page(client, space_id, page=page, per_page=100)
+        data = fetch_space_members_page(client, space_id, page=page, per_page=100)
         records = data.get("records", [])
         if not records:
             break
@@ -84,7 +84,8 @@ def build_summary():
     with httpx.Client(timeout=30) as client:
         for name, space_id in SPACES.items():
             total = get_total_members(client, space_id)
-            lines.append(f"• {name}: {total}")
+            new = get_new_members_count(client, space_id)
+            lines.append(f"• {name}: {total} total ({new} new registrations in last {LOOKBACK_HOURS}h)")
     return "\n".join(lines)
 
 
