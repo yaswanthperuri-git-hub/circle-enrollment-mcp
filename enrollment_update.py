@@ -24,9 +24,9 @@ CIRCLE_BASE_URL = "https://app.circle.so/api/admin/v2"
 # EDIT THIS: your dedicated enrollment batches (label -> Circle access_group_id)
 SPACES = {
     "BC16A (Aug - 22,23,24) - IND": 142791,
-    "BC17 (Sep 11,12,13) - INTL": 139385,
-    "BC18 (Sep 5,6,7) - IND": 142790,
-    "BC19 (Sep 19, 20, 21) - IND": 142789,
+    "BC17 (Sep - 11,12,13) - INTL": 139385,
+    "BC18 (Sep - 5,6,7) - IND": 142790,
+    "BC19 (Sep - 19, 20, 21) - IND": 142789,
 }
 
 
