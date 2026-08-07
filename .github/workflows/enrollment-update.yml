@@ -2,7 +2,7 @@ name: Daily Circle Enrollment Update
 
 on:
   schedule:
-    - cron: '30 5 * * *'
+    - cron: '20 5 * * *'
   workflow_dispatch: {}
 
 jobs:
