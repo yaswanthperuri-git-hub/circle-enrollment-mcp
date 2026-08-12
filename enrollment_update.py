@@ -27,6 +27,7 @@ SPACES = {
     "BC17 (Sep 11, 12, 13) - INTL": 139385,
     "BC18 (Sep 5, 6, 7) - IND": 142790,
     "BC19 (Sep 19, 20, 21) - IND": 142789,
+    "BC20 (Aug 29, 30, 31) - IND": 145591,
 }
 
 
@@ -61,7 +62,12 @@ def build_summary():
 
 
 def post_to_slack(text):
-    resp = httpx.post(SLACK_WEBHOOK_URL, json={"text": text}, timeout=15)
+    payload = {
+        "text": text,
+        "username": "Enrollment Update",  # change this to whatever name you want
+        "icon_emoji": ":bar_chart:",       # optional: any Slack emoji, or remove this line
+    }
+    resp = httpx.post(SLACK_WEBHOOK_URL, json=payload, timeout=15)
     resp.raise_for_status()
 
 
