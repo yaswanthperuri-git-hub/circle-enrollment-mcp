@@ -2,15 +2,14 @@
 Circle -> Slack daily enrollment update
 ----------------------------------------
 Standalone script (no server, no hosting). Pulls member counts for your
-dedicated Circle space groups (batches) and posts a formatted summary to
+dedicated Circle access groups (batches) and posts a formatted summary to
 Slack. Meant to be run by GitHub Actions on a daily cron schedule.
 
 Env vars required (set as GitHub repo secrets):
   CIRCLE_API_TOKEN    - Circle Admin API v2 token
   SLACK_WEBHOOK_URL   - Slack Incoming Webhook URL for the target channel
 
-Edit SPACES below with your actual space group IDs and display names.
-Note: these are SPACE GROUP ids (batches/cohorts), not individual space ids.
+Edit SPACES below with your actual access group IDs and display labels.
 """
 
 import os
@@ -23,7 +22,6 @@ CIRCLE_BASE_URL = "https://app.circle.so/api/admin/v2"
 
 # EDIT THIS: your dedicated enrollment batches (label -> Circle access_group_id)
 SPACES = {
-    "BC16A (Aug - 22, 23, 24) - IND": 142791,
     "BC17 (Sep 11, 12, 13) - INTL": 139385,
     "BC18 (Sep 5, 6, 7) - IND": 142790,
     "BC19 (Sep 19, 20, 21) - IND": 142789,
