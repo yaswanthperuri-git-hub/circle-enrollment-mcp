@@ -49,7 +49,7 @@ def get_access_group_member_count(client, access_group_id):
 
 def build_summary():
     lines = [
-        "<@U02FRTNJHSQ> <@U0638PQH6DP>",
+        "<@U02FRTNJHSQ>",
         "*Total current enrolments in the below batches:*",
     ]
     with httpx.Client(timeout=30) as client:
